@@ -1,0 +1,43 @@
+form{
+    height: 100vh;
+}
+.carousel,.carousel-item.active,.container{
+    height: 100%;
+}
+
+ .main-container img{
+    height: 100%;
+    position: relative;
+    /* right: 241px; */
+    aspect-ratio: 12/9;
+    object-fit: cover;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.btn{  
+    flex-basis: 50px;
+    flex-shrink: 0;
+    position: fixed;
+    --bs-btn-border-radius: 50%;
+}
+
+.next{
+    bottom: 1rem;
+    right: 50%;
+}
+
+.prev{
+    top: 1rem;
+    right: 50%;
+}
+
+.side-container{
+    width: 30vh;
+}
+.side-container img{
+    vertical-align: middle;
+    width: 100%;
+    height: calc(100% / 5);
+    object-fit: cover;
+}
