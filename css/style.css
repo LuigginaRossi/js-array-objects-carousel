@@ -5,7 +5,7 @@ form{
     height: 100%;
 }
 
- .main-container img{
+.main-container img{
     height: 100%;
     position: relative;
     /* right: 241px; */
@@ -13,6 +13,7 @@ form{
     object-fit: cover;
     flex-grow: 1;
     overflow: auto;
+    opacity: 0;
 }
 
 .btn{  
@@ -40,4 +41,8 @@ form{
     width: 100%;
     height: calc(100% / 5);
     object-fit: cover;
+}
+
+.main-container .carousel .opacity{
+    opacity: 1;
 }

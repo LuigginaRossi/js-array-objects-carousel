@@ -22,95 +22,90 @@ const imagesList = [
     }
 ];
 
+console.log(imagesList[0].text)
+
 // creo array imgs
 const images = imagesList.map( function(element){
     let image= element.image
-    return image
+     return image
 })
 
 console.log(images)
 
-//prendo slide-containet da html
-const sliderContainerEl = document.querySelector(".slider-container");
-console.log(sliderContainerEl)
+//prendo container carousel
+const carouselEl = document.querySelector(".carousel");
+console.log(carouselEl)
 
-//indice attuale è 0
-let currentImgIndex = 0;
-console.log(currentImgIndex)
+let currentIndex = 0;
+console.log(currentIndex);
 
+images.forEach(function(element, i, array){
+    
+    console.log(i);
+     // creo elemento carousel-item
+     const carouselItemEL = document.createElement("div");
+     const imgEl = document.createElement("img");
+     const carouselCaptionEl = document.createElement("div");
+ 
+     //attribuisco proprietà:
+     carouselItemEL.classList.add("carousel-item", "active");
+ 
+     imgEl.classList.add("d-block", "w-100")
+     imgEl.src = images[i];
 
-for (let i = 0;  i < images.length; i++) {  
-    // //aggiungo dentro al slider-container un tag img con indice 0
-    // sliderContainerEl.innerHTML += `<img src="${images[i]}" class="slider-img">`;
-   
-    // console.log(sliderContainerEl)
-    // // // currentImgIndex++; 
+     if ( i === currentIndex){
+        imgEl.classList.add("opacity");
+    }
+ 
+     carouselCaptionEl.classList.add("carousel-caption", "pb-5");
+     carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
+     <p> ${imagesList[i].text} </p>`;
+     // appendo:
+     carouselItemEL.append(imgEl, carouselCaptionEl);
+ 
+     carouselEl.append(carouselItemEL);
 
-    // const sliderImgEl = document.querySelector( `.slider-container :nth-child( ${currentImgIndex + 1} )` );
-    // console.log(sliderImgEl)
+})
 
-    // if ( i === 0 ) {
-    //   sliderImgEl.classList.add("d-block");
-    // }
-}
 
 //prendo i button da html
 const btnNext = document.querySelector(".next");
 const btnPrev = document.querySelector(".prev");
 console.log( btnNext, btnPrev);
 
+
 btnNext.addEventListener("click", function() {
     console.log("hai cliccato il btn next");
 
-    // // c'è un'immagine che ha la classe d-block
-    // // da quell'immagine togli la classe
-    // const oldImage = document.querySelector( `.slider-container :nth-child( ${currentImgIndex + 1 } )` );
-    // console.log('old image', oldImage);
+        currentIndex ++;
+        console.log(currentIndex)
 
-    // oldImage.classList.remove("d-block");
+        const oldImg = carouselEl.querySelector(".opacity")
+        oldImg.classList.remove("opacity")
+        console.log("oldimg:", oldImg)
 
-    // // incrementi la variabile currentImgIndex
-    // currentImgIndex++;
+        if(currentIndex >= images.length){
+            currentIndex = -1;
+        }
+        
+        console.log(images[currentIndex]);
 
-    // // verificare che il nuovo currentImgIndex non sia oltre i limiti
-    // // se lo è o lo mettiamo a zero (se il bottone è next), altirmenti il contrario
-
-    // if ( currentImgIndex > (images.length - 1)){
-    //     currentImgIndex = 0 ;
-    // }        
-
-    // // e quella dopo la mostri dandole d-block
-    // //aggiorno scr dell'immagine perndendo l'indice dall'currentimgIndex
-    // const newImage = document.querySelector( `.slider-container :nth-child( ${currentImgIndex + 1} )` );
-    // newImage.classList.add("d-block");
-    // // decremento la variabile currentImgIndex
-
-    // console.log(currentImgIndex);
+        //individuo nuovo elemento al quale dare active
 });
 
 btnPrev.addEventListener("click", function() {
   console.log("hai cliccato il btn prev");
-    
-    // const ImgEl = document.querySelector( `.slider-container :nth-child( ${currentImgIndex + 1} )` );
-    // console.log(ImgEl)
-    // //const oldImage = document.querySelector( `.slider-container :nth-child( ${currentImgIndex + 1} )` );
-    // //console.log('old image', oldImage);
 
-    // //oldImage.classList.remove("d-block");
+     currentIndex --;
+     console.log(currentIndex)
 
-    // //decremento il contatore dell' valore images:
-    // currentImgIndex--;
+    // //se currentindeximgindes< 0 allora torna a 4:
+     if ( currentIndex < 0){
 
-    // //se currentindeximgindes<0 allora lo reimposto a 0:
-    // if ( currentImgIndex < 0 ){
-    //   currentImgIndex = images.length ;
-    //   console.log(currentImgIndex)
-    // }
+       currentIndex = images.length - 1;
+       console.log(currentIndex);
+     }
 
-    // //const newImage = document.querySelector( `.slider-container :nth-child( ${currentImgIndex} )` );
-    // //newImage.classList.add("d-block")
-    
-    // //console.log(newImage);
 });
 
 
