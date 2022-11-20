@@ -24,21 +24,26 @@ const imagesList = [
 
 console.log(imagesList[0].text)
 
-// creo array imgs
+// creo array immagini principali:
 const images = imagesList.map( function(element){
     let image= element.image
      return image
-})
+});
 
-console.log(images)
+console.log(images);
+
+// uso un nuovo array di map per creare e stampare le immagini laterali.
 
 //prendo container carousel
 const carouselEl = document.querySelector(".carousel");
 console.log(carouselEl)
 
+
 let currentIndex = 0;
 console.log(currentIndex);
 
+
+//stampo immagini principali
 images.forEach(function(element, i, array){
     
     console.log(i);
@@ -46,26 +51,29 @@ images.forEach(function(element, i, array){
      const carouselItemEL = document.createElement("div");
      const imgEl = document.createElement("img");
      const carouselCaptionEl = document.createElement("div");
+
+     carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
+     <p> ${imagesList[i].text} </p>`;
  
      //attribuisco proprietà:
      carouselItemEL.classList.add("carousel-item", "active");
  
-     imgEl.classList.add("d-block", "w-100")
-     imgEl.src = images[i];
+    imgEl.classList.add("w-100", "slider-img");
+    imgEl.src = images[i];
 
-     if ( i === currentIndex){
-        imgEl.classList.add("opacity");
-    }
- 
-     carouselCaptionEl.classList.add("carousel-caption", "pb-5");
-     carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
-     <p> ${imagesList[i].text} </p>`;
+    carouselCaptionEl.classList.add("carousel-caption", "pb-5");
+     
      // appendo:
      carouselItemEL.append(imgEl, carouselCaptionEl);
- 
      carouselEl.append(carouselItemEL);
 
+    //alla img con indice 0:
+    if ( i === currentIndex){
+        imgEl.classList.add("active-element");
+    }
+
 })
+
 
 
 //prendo i button da html
@@ -78,50 +86,54 @@ btnNext.addEventListener("click", function() {
     console.log("hai cliccato il btn next");
 
         currentIndex ++;
-        console.log(currentIndex)
 
-        const oldImg = carouselEl.querySelector(".opacity")
-        oldImg.classList.remove("opacity")
-        console.log("oldimg:", oldImg)
-
-        if(currentIndex >= images.length){
-            currentIndex = -1;
+        if(currentIndex >= images.length -1){
+            currentIndex = 0;
         }
         
-        console.log(images[currentIndex]);
+        console.log(currentIndex);
 
-        //individuo nuovo elemento al quale dare active
+        // tolgo la  classe active-element a quasiasi elemento:
+        const oldActiveEl = carouselEl.querySelector(".active-element");
+        oldActiveEl.classList.remove("active-element");
+
+        //trovo nuovo elemento:
+        const imageELs = carouselEl.querySelectorAll( "img" );
+        const newActiveEl = imageELs[currentIndex];
+        console.log(newActiveEl);
+
+        newActiveEl.classList.add("active-element");
 });
 
 btnPrev.addEventListener("click", function() {
   console.log("hai cliccato il btn prev");
 
      currentIndex --;
-     console.log(currentIndex)
 
-    // //se currentindeximgindes< 0 allora torna a 4:
-     if ( currentIndex < 0){
+    //se currentindeximgindes< 0 allora torna a 4:
+    if ( currentIndex < 0){
+      currentIndex = images.length -1;
+    }
 
-       currentIndex = images.length - 1;
-       console.log(currentIndex);
-     }
+    console.log(currentIndex);
+
+     // tolgo la  classe active-element a quasiasi elemento:
+     const oldActiveEl = carouselEl.querySelector(".active-element");
+     oldActiveEl.classList.remove("active-element");
+
+      //trovo nuovo elemento:
+      const imageELs = carouselEl.querySelectorAll( "img" );
+      const newActiveEl = imageELs[currentIndex];
+      console.log(newActiveEl);
+
+      newActiveEl.classList.add("active-element");
+
+   
+
+     console.log(images[currentIndex]);
 
 });
 
-
-// ---------------
-
-// for (let i= 0; i < images.length; i++ ) {
-//   const currentImgIndex = images[i]
-
-//   const sliderImgEl = document.createElement("img");
-
-//   sliderImgEl.scr = currentImgIndex;
-
-//   sliderContainerEl.append(sliderImgEl)
-// }
-
-// -------
 
 
 

@@ -1,11 +1,25 @@
-form{
+body{
     height: 100vh;
 }
-.carousel,.carousel-item.active,.container{
+
+img{
+    width: 100%;
+    display: block;
+}
+.carousel,.carousel-item,.slider-container{
     height: 100%;
 }
 
-.main-container img{
+.slider-container{
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.carousel{
+
+}
+
+.slider-img{
     height: 100%;
     position: relative;
     /* right: 241px; */
@@ -13,7 +27,15 @@ form{
     object-fit: cover;
     flex-grow: 1;
     overflow: auto;
-    opacity: 0;
+    display: none;
+}
+
+.carousel-caption{
+    display: none;
+}
+
+.active-element{
+    display: block;
 }
 
 .btn{  
@@ -21,6 +43,7 @@ form{
     flex-shrink: 0;
     position: fixed;
     --bs-btn-border-radius: 50%;
+    z-index: 3;
 }
 
 .next{
@@ -33,16 +56,12 @@ form{
     right: 50%;
 }
 
-.side-container{
-    width: 30vh;
-}
+
 .side-container img{
     vertical-align: middle;
-    width: 100%;
+    width: 30vh;
+    flex-shrink: 0;
     height: calc(100% / 5);
     object-fit: cover;
 }
 
-.main-container .carousel .opacity{
-    opacity: 1;
-}
