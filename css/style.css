@@ -15,9 +15,6 @@ img{
     overflow: auto;
 }
 
-.carousel{
-
-}
 
 .slider-img{
     height: 100%;
@@ -32,10 +29,6 @@ img{
 
 .carousel-caption{
     display: none;
-}
-
-.active-element{
-    display: block;
 }
 
 .btn{  
@@ -57,11 +50,16 @@ img{
 }
 
 
-.side-container img{
+.side-img{
     vertical-align: middle;
     width: 30vh;
     flex-shrink: 0;
     height: calc(100% / 5);
     object-fit: cover;
+    opacity: .5;
 }
 
+.active-element{
+    display: block;
+    opacity: 1;
+}

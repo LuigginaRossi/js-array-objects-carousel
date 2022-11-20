@@ -32,49 +32,56 @@ const images = imagesList.map( function(element){
 
 console.log(images);
 
-// uso un nuovo array di map per creare e stampare le immagini laterali.
-
-//prendo container carousel
 const carouselEl = document.querySelector(".carousel");
-console.log(carouselEl)
+console.log(carouselEl);
 
+const sideContainerEl = document.querySelector(".side-container")
+console.log(sideContainerEl)
 
 let currentIndex = 0;
 console.log(currentIndex);
 
 
-//stampo immagini principali
+//stampo immagini:
 images.forEach(function(element, i, array){
     
     console.log(i);
-     // creo elemento carousel-item
-     const carouselItemEL = document.createElement("div");
-     const imgEl = document.createElement("img");
-     const carouselCaptionEl = document.createElement("div");
+    // creo elementi principali:
+    const carouselItemEL = document.createElement("div");
+    const imgEl = document.createElement("img");
+    const carouselCaptionEl = document.createElement("div");
 
-     carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
-     <p> ${imagesList[i].text} </p>`;
+    carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
+    <p> ${imagesList[i].text} </p>`;
  
-     //attribuisco proprietà:
-     carouselItemEL.classList.add("carousel-item", "active");
+    //attribuisco proprietà:
+    carouselItemEL.classList.add("carousel-item", "active");
  
     imgEl.classList.add("w-100", "slider-img");
     imgEl.src = images[i];
 
     carouselCaptionEl.classList.add("carousel-caption", "pb-5");
      
-     // appendo:
-     carouselItemEL.append(imgEl, carouselCaptionEl);
-     carouselEl.append(carouselItemEL);
+    // appendo immagini principali:
+    carouselItemEL.append(imgEl, carouselCaptionEl);
+    carouselEl.append(carouselItemEL);
+
+    // creo elementi side-bar:
+    const sideImgEl = document.createElement("img");
+    sideImgEl.classList.add("side-img");
+    sideImgEl.src = images[i];
+    console.log(sideImgEl)
+    //appendo:
+    sideContainerEl.append(sideImgEl);
 
     //alla img con indice 0:
     if ( i === currentIndex){
         imgEl.classList.add("active-element");
+        sideImgEl.classList.add("active-element");
+        console.log(sideImgEl.outerHTML)
     }
 
-})
-
-
+});
 
 //prendo i button da html
 const btnNext = document.querySelector(".next");
