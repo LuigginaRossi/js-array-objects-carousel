@@ -100,9 +100,13 @@ btnNext.addEventListener("click", function() {
         
         console.log(currentIndex);
 
-        // tolgo la  classe active-element a quasiasi elemento:
+        // tolgo la  classe active-element a quasiasi elemento della parte principale:
         const oldActiveEl = carouselEl.querySelector(".active-element");
         oldActiveEl.classList.remove("active-element");
+
+        // tolgo la  classe active-element a quasiasi elemento della parte laterale:
+        const oldSideActiveEl = sideContainerEl.querySelector(".active-element");
+        oldSideActiveEl.classList.remove("active-element");
 
         //trovo nuovo elemento:
         const imageELs = carouselEl.querySelectorAll( "img" );
@@ -110,34 +114,45 @@ btnNext.addEventListener("click", function() {
         console.log(newActiveEl);
 
         newActiveEl.classList.add("active-element");
+
+        //trovo nuovo elemento:
+        const sideImgELs = sideContainerEl.querySelectorAll( "img" );
+        const newSideActiveEl = sideImgELs[currentIndex];
+        console.log(newSideActiveEl);
+
+        newSideActiveEl.classList.add("active-element");
+        
 });
 
 btnPrev.addEventListener("click", function() {
   console.log("hai cliccato il btn prev");
 
-     currentIndex --;
+    currentIndex --;
 
     //se currentindeximgindes< 0 allora torna a 4:
     if ( currentIndex < 0){
       currentIndex = images.length -1;
     }
 
-    console.log(currentIndex);
+    // tolgo la  classe active-element a quasiasi elemento della parte principale:
+    const oldActiveEl = carouselEl.querySelector(".active-element");
+    oldActiveEl.classList.remove("active-element");
 
-     // tolgo la  classe active-element a quasiasi elemento:
-     const oldActiveEl = carouselEl.querySelector(".active-element");
-     oldActiveEl.classList.remove("active-element");
+    // tolgo la  classe active-element a quasiasi elemento della parte laterale:
+    const oldSideActiveEl = sideContainerEl.querySelector(".active-element");
+    oldSideActiveEl.classList.remove("active-element");
 
-      //trovo nuovo elemento:
-      const imageELs = carouselEl.querySelectorAll( "img" );
-      const newActiveEl = imageELs[currentIndex];
-      console.log(newActiveEl);
+    //trovo nuovo elemento:
+    const imageELs = carouselEl.querySelectorAll( "img" );
+    const newActiveEl = imageELs[currentIndex];
+    
+    newActiveEl.classList.add("active-element");
 
-      newActiveEl.classList.add("active-element");
+    //trovo nuovo elemento:
+    const sideImgELs = sideContainerEl.querySelectorAll( "img" );
+    const newSideActiveEl = sideImgELs[currentIndex];
 
-   
-
-     console.log(images[currentIndex]);
+    newSideActiveEl.classList.add("active-element");
 
 });
 

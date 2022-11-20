@@ -19,7 +19,6 @@ img{
 .slider-img{
     height: 100%;
     position: relative;
-    /* right: 241px; */
     aspect-ratio: 12/9;
     object-fit: cover;
     flex-grow: 1;
