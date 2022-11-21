@@ -41,6 +41,7 @@ console.log(sideContainerEl)
 let currentIndex = 0;
 console.log(currentIndex);
 
+let carouselCaptionEl;
 
 //stampo immagini:
 images.forEach(function(element, i, array){
@@ -49,11 +50,11 @@ images.forEach(function(element, i, array){
     // creo elementi principali:
     const carouselItemEL = document.createElement("div");
     const imgEl = document.createElement("img");
-    const carouselCaptionEl = document.createElement("div");
+    carouselCaptionEl = document.createElement("div");
 
-    carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
-    <p> ${imagesList[i].text} </p>`;
- 
+    //  carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
+    //  <p> ${imagesList[i].text} </p>`;
+
     //attribuisco proprietà:
     carouselItemEL.classList.add("carousel-item", "active");
  
@@ -78,7 +79,12 @@ images.forEach(function(element, i, array){
     if ( i === currentIndex){
         imgEl.classList.add("active-element");
         sideImgEl.classList.add("active-element");
-        console.log(sideImgEl.outerHTML)
+        console.log(sideImgEl.outerHTML);
+
+        // carouselCaptionEl.innerHTML = `<h5> ${imagesList[i].title} </h5>
+        // <p> ${imagesList[i].text} </p>`;
+        
+        // carouselCaptionEl.classList.add("z-index");
     }
 
 });
@@ -100,29 +106,79 @@ btnNext.addEventListener("click", function() {
         
         console.log(currentIndex);
 
-        // tolgo la  classe active-element a quasiasi elemento della parte principale:
+        // tolgo  active-element a img principale:
         const oldActiveEl = carouselEl.querySelector(".active-element");
         oldActiveEl.classList.remove("active-element");
 
-        // tolgo la  classe active-element a quasiasi elemento della parte laterale:
+        // tolgo active-element a img laterale:
         const oldSideActiveEl = sideContainerEl.querySelector(".active-element");
         oldSideActiveEl.classList.remove("active-element");
 
-        //trovo nuovo elemento:
+
+        //trovo nuovo img principale:
         const imageELs = carouselEl.querySelectorAll( "img" );
         const newActiveEl = imageELs[currentIndex];
         console.log(newActiveEl);
 
         newActiveEl.classList.add("active-element");
 
-        //trovo nuovo elemento:
+        //trovo nuovo img laterale:
         const sideImgELs = sideContainerEl.querySelectorAll( "img" );
         const newSideActiveEl = sideImgELs[currentIndex];
         console.log(newSideActiveEl);
 
         newSideActiveEl.classList.add("active-element");
+
+        // //tolgo z-index a vecchia didascalia:
+        // const oldCaptionEL = carouselEl.querySelector(".z-index");
+        // oldCaptionEL.classList.remove("z-index");
+                
+        //  // trovo nuova didascalia:
+        //  const captionEl = carouselEl.querySelectorAll(".carousel- caption");
+        //  const newActiveCaption = captionEl[currentIndex + 1];
+        //  console.log(captionEl)
+
+        // newActiveCaption.classList.add("z-index");
+        const titoli = imagesList.map( function(element){
+            let titoli= element.title
+            return titoli
+        });
+
+        console.log(titoli)
         
+        titoli.forEach(function(element, i, array){
+        console.log(element);
+
+            if(i === currentIndex){
+                // carouselCaptionEl.innerHTML= "";
+                carouselCaptionEl.innerHTML = element;
+                carouselCaptionEl.classList.add("z-index")
+                
+            }
+            
+        });
+
+        const testi = imagesList.map( function(element){
+            let testi= element.text
+            return testi
+        });
+
+        console.log(testi)
+        
+        testi.forEach(function(element, i, array){
+        console.log(element);
+
+            if(i === currentIndex){
+                carouselCaptionEl.innerHTML += "<br>" + element;
+                carouselCaptionEl.classList.add("z-index")     
+            }
+            
+        });
+       
 });
+
+        
+
 
 btnPrev.addEventListener("click", function() {
   console.log("hai cliccato il btn prev");
@@ -153,6 +209,41 @@ btnPrev.addEventListener("click", function() {
     const newSideActiveEl = sideImgELs[currentIndex];
 
     newSideActiveEl.classList.add("active-element");
+
+    const titoli = imagesList.map( function(element){
+        let titoli= element.title
+        return titoli
+    });
+
+    console.log(titoli)
+    
+    titoli.forEach(function(element, i, array){
+    console.log(element);
+
+        if(i === currentIndex){
+            carouselCaptionEl.innerHTML = element;
+            carouselCaptionEl.classList.add("z-index")
+            
+        }
+        
+    });
+
+    const testi = imagesList.map( function(element){
+        let testi= element.text
+        return testi
+    });
+
+    console.log(testi)
+    
+    testi.forEach(function(element, i, array){
+    console.log(element);
+
+        if(i === currentIndex){
+            carouselCaptionEl.innerHTML += "<br>" + element;
+            carouselCaptionEl.classList.add("z-index")     
+        }
+        
+    });
 
 });
 

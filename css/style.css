@@ -24,10 +24,11 @@ img{
     flex-grow: 1;
     overflow: auto;
     display: none;
+    z-index: 1;
 }
 
-.carousel-caption{
-    display: none;
+.z-index{
+    z-index: 3;
 }
 
 .btn{  
@@ -35,7 +36,7 @@ img{
     flex-shrink: 0;
     position: fixed;
     --bs-btn-border-radius: 50%;
-    z-index: 3;
+    z-index: 4;
 }
 
 .next{
